@@ -1,0 +1,8 @@
+FROM docker.io/alpine:latest
+
+RUN eval "$(wget -O- https://get.x-cmd.com)"
+RUN . "$HOME/.x-cmd.root/X" && x proxy set 
+RUN apk add git alpine-sdk ncurses-dev linux-headers curl
+RUN mkdir /build
+COPY busybox-config /build/
+COPY build-busybox.sh /build/
